@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thang Máy Nguyễn Gia - Chuyên Thang Máy Gia Đình & Tải Khách Cao Cấp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #1b3c6b;
+            --primary-light: #2a5a8c;
+            --accent: #e8882a;
+            --accent-light: #f0a050;
+            --accent-dark: #d07020;
+            --dark: #0f1923;
+            --light: #f5f7fa;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --white: #ffffff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --radius: 12px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.3;
+        }
+
+        img { max-width: 100%; height: auto; }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 10px rgba(0,0,0,0.06);
+            transition: all 0.3s;
+        }
+        .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .logo img { height: 48px; width: auto; }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s !important;
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(232,136,42,0.4);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 24px; height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 72px;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://thangmaynguyengia.com/wp-content/uploads/2023/07/banner-1.jpg') center/cover no-repeat;
+            z-index: 0;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(15,25,35,0.88) 0%, rgba(27,60,107,0.75) 50%, rgba(42,90,140,0.6) 100%);
+        }
+        .hero-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content { color: var(--white); }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232,136,42,0.15);
+            border: 1px solid rgba(232,136,42,0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: var(--accent-light);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 4.5vw, 52px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
+        .hero p {
+            font-size: 17px;
+            opacity: 0.85;
+            margin-bottom: 36px;
+            max-width: 520px;
+            line-height: 1.8;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(232,136,42,0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(232,136,42,0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-img-wrapper {
+            width: 100%;
+            max-width: 440px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .hero-img-wrapper img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-img-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 30px 24px 24px;
+            color: var(--white);
+        }
+        .hero-img-overlay h3 {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+        .hero-img-overlay p {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+        .floating-card {
+            position: absolute;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 14px 18px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .floating-card:nth-child(2) { top: 30px; right: -30px; animation-delay: 0s; }
+        .floating-card:nth-child(3) { bottom: 60px; left: -30px; animation-delay: 1.5s; }
+        .floating-card .fc-icon {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .floating-card .fc-text { font-size: 13px; font-weight: 700; color: var(--primary); font-family: 'Montserrat', sans-serif; }
+        .floating-card .fc-sub { font-size: 11px; color: var(--gray); margin-top: 2px; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+        }
+        .stat-item { text-align: center; }
+        .stat-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ─── SECTIONS ─── */
+        section { padding: 100px 24px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 64px;
+        }
+        .section-tag {
+            display: inline-block;
+            background: rgba(232,136,42,0.1);
+            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section-header h2 {
+            font-size: clamp(28px, 3vw, 38px);
+            color: var(--primary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .section-header p {
+            font-size: 16px;
+            color: var(--gray);
+        }
+
+        /* ─── ABOUT ─── */
+        .about { background: var(--light); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image { position: relative; }
+        .about-img-main {
+            width: 100%;
+            height: 440px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        .about-img-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-exp {
+            position: absolute;
+            bottom: -20px; right: -20px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 20px 28px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        .about-exp .num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 900;
+            display: block;
+        }
+        .about-exp .txt { font-size: 13px; font-weight: 600; }
+        .about-text h2 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+        .about-counters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 28px 0;
+        }
+        .counter-box {
+            text-align: center;
+            padding: 20px 12px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        .counter-box .c-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .counter-box .c-label {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 24px;
+        }
+        .about-feat {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        .about-feat .check {
+            width: 24px; height: 24px;
+            background: rgba(232,136,42,0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent);
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        /* ─── PRODUCTS ─── */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            border: 1px solid var(--gray-light);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-img {
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        .product-badge {
+            position: absolute;
+            top: 12px; left: 12px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+        .product-info { padding: 20px; }
+        .product-info h3 {
+            font-size: 15px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .product-info p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        .product-footer {
+            padding: 14px 20px;
+            border-top: 1px solid var(--gray-light);
+            text-align: center;
+        }
+        .product-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        .product-link:hover { color: var(--primary); }
+
+        /* ─── SERVICES ─── */
+        .services {
+            background: var(--primary);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://thangmaynguyengia.com/wp-content/uploads/2023/10/ldtm.jpg') center/cover no-repeat;
+            opacity: 0.12;
+        }
+        .services .section-tag { background: rgba(232,136,42,0.2); }
+        .services .section-header h2 { color: var(--white); }
+        .services .section-header p { color: rgba(255,255,255,0.6); }
+        .services .container { position: relative; z-index: 1; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .service-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius);
+            padding: 36px 24px;
+            text-align: center;
+            transition: all 0.4s;
+        }
+        .service-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-6px);
+        }
+        .service-icon {
+            width: 68px; height: 68px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 20px;
+        }
+        .service-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .service-card p {
+            font-size: 13px;
+            opacity: 0.7;
+            line-height: 1.7;
+        }
+
+        /* ─── PROJECTS ─── */
+        .projects { background: var(--light); }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .project-card {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s;
+            background: var(--white);
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .project-img {
+            height: 240px;
+            overflow: hidden;
+        }
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+        .project-info {
+            padding: 20px;
+        }
+        .project-info h3 {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .project-info p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* ─── PARTNERS ─── */
+        .partners {
+            padding: 60px 24px;
+            background: var(--white);
+        }
+        .partners .section-header { margin-bottom: 40px; }
+        .partners-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .partner-logo {
+            height: 60px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            filter: grayscale(30%);
+        }
+        .partner-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        /* ─── WHY US ─── */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .why-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 28px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            border-bottom: 4px solid transparent;
+        }
+        .why-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-bottom-color: var(--accent);
+        }
+        .why-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 56px;
+            font-weight: 900;
+            color: rgba(27,60,107,0.05);
+            position: absolute;
+            top: 12px; right: 16px;
+        }
+        .why-icon {
+            font-size: 38px;
+            margin-bottom: 18px;
+        }
+        .why-card h3 {
+            font-size: 17px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .why-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ─── PROCESS ─── */
+        .process {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: var(--white);
+        }
+        .process .section-tag { background: rgba(232,136,42,0.2); }
+        .process .section-header h2 { color: var(--white); }
+        .process .section-header p { color: rgba(255,255,255,0.6); }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px; left: 12%; right: 12%;
+            height: 2px;
+            background: rgba(232,136,42,0.3);
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .step-circle {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--white);
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 20px rgba(232,136,42,0.3);
+        }
+        .step h3 { font-size: 15px; margin-bottom: 8px; text-transform: uppercase; }
+        .step p { font-size: 13px; opacity: 0.6; line-height: 1.6; }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            position: relative;
+            text-align: center;
+            color: var(--white);
+            padding: 100px 24px;
+            overflow: hidden;
+        }
+        .cta-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://thangmaynguyengia.com/wp-content/uploads/2023/10/ldtm.jpg') center/cover no-repeat;
+        }
+        .cta-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(27,60,107,0.92), rgba(15,25,35,0.88));
+        }
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section h2 {
+            font-size: clamp(28px, 3vw, 42px);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .cta-section p {
+            font-size: 17px;
+            opacity: 0.8;
+            margin-bottom: 36px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+        }
+        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+        }
+        .btn-accent:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(232,136,42,0.4); }
+
+        /* ─── CONTACT ─── */
+        .contact { background: var(--light); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+        .contact-info h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .contact-info > p {
+            color: var(--gray);
+            margin-bottom: 32px;
+            font-size: 15px;
+        }
+        .contact-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .contact-item .ci-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, rgba(27,60,107,0.08), rgba(232,136,42,0.08));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .contact-item .ci-label {
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .contact-item .ci-value {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 15px;
+        }
+        .contact-item .ci-value a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .contact-item .ci-value a:hover { color: var(--accent); }
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        .contact-form h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            transition: border-color 0.3s;
+            background: var(--light);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+        }
+        .form-group textarea { resize: vertical; min-height: 90px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(232,136,42,0.4);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            padding: 64px 24px 32px;
+        }
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+        .footer-brand p { font-size: 14px; line-height: 1.7; margin: 16px 0 20px; }
+        .footer-brand .footer-logo { height: 44px; }
+        .social-links { display: flex; gap: 12px; }
+        .social-links a {
+            width: 38px; height: 38px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .social-links a:hover { background: var(--accent); color: var(--white); }
+        footer h4 {
+            color: var(--white);
+            font-size: 15px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        /* ─── FLOATING ─── */
+        .scroll-top {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            width: 48px; height: 48px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        .scroll-top.visible { opacity: 1; transform: translateY(0); }
+        .scroll-top:hover { transform: translateY(-3px); }
+
+        .phone-float {
+            position: fixed;
+            bottom: 24px; left: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #e74c3c;
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 20px rgba(231,76,60,0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .phone-float:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(231,76,60,0.5); }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(231,76,60,0.4); }
+            50% { box-shadow: 0 4px 30px rgba(231,76,60,0.7); }
+        }
+
+        .zalo-float {
+            position: fixed;
+            bottom: 80px; left: 24px;
+            width: 52px; height: 52px;
+            background: #0068ff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(0,104,255,0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .zalo-float:hover { transform: translateY(-3px); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+            .process-steps::before { display: none; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px; left: 0; right: 0;
+                background: var(--white);
+                padding: 24px;
+                box-shadow: var(--shadow-lg);
+                gap: 16px;
+            }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero p { margin: 0 auto 36px; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; gap: 32px; }
+            .hero-visual { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+            .form-row { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .about-counters { grid-template-columns: 1fr; }
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="logo">
+            <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/07/logothangmaynguyengia-1024x280.png" alt="Thang Máy Nguyễn Gia">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">Giới Thiệu</a></li>
+            <li><a href="#products">Sản Phẩm</a></li>
+            <li><a href="#services">Dịch Vụ</a></li>
+            <li><a href="#projects">Dự Án</a></li>
+            <li><a href="#contact" class="nav-cta">083 363 3388</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid">
+        <div class="hero-content">
+            <div class="hero-badge">&#9733; Tận Tâm Đi Viễn Xa</div>
+            <h1>Thang Máy <span class="highlight">Nguyễn Gia</span><br>Sang Trọng &amp; Đẳng Cấp</h1>
+            <p>Chuyên cung cấp, lắp đặt và bảo trì thang máy gia đình, thang máy tải khách cao cấp. Nhập khẩu nguyên chiếc 100%, cá nhân hoá từng công trình.</p>
+            <div class="hero-buttons">
+                <a href="tel:0833633388" class="btn btn-primary">&#9742; Gọi Ngay: 083 363 3388</a>
+                <a href="#products" class="btn btn-outline">Xem Sản Phẩm &#8594;</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">15</div>
+                    <div class="stat-label">Năm Kinh Nghiệm</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">63</div>
+                    <div class="stat-label">Tỉnh Thành</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">1.000+</div>
+                    <div class="stat-label">Dự Án</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-img-wrapper">
+                <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/07/thang-may-tai-khach-05-1.jpeg" alt="Thang máy Nguyễn Gia cao cấp">
+                <div class="hero-img-overlay">
+                    <h3>Thang Máy Tải Khách</h3>
+                    <p>Nhập khẩu nguyên chiếc - Thiết kế sang trọng</p>
+                </div>
+            </div>
+            <div class="floating-card">
+                <div class="fc-icon" style="background:rgba(46,204,113,0.12);">&#128737;</div>
+                <div>
+                    <div class="fc-text">Bảo Hành 24 Tháng</div>
+                    <div class="fc-sub">Toàn diện & miễn phí</div>
+                </div>
+            </div>
+            <div class="floating-card">
+                <div class="fc-icon" style="background:rgba(232,136,42,0.12);">&#9889;</div>
+                <div>
+                    <div class="fc-text">63 Tỉnh Thành</div>
+                    <div class="fc-sub">Phủ sóng toàn quốc</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image fade-up">
+                <div class="about-img-main">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/ldtm.jpg" alt="Lắp đặt thang máy Nguyễn Gia">
+                </div>
+                <div class="about-exp">
+                    <span class="num">15+</span>
+                    <span class="txt">Năm Kinh Nghiệm</span>
+                </div>
+            </div>
+            <div class="about-text fade-up">
+                <div class="section-tag">Về Chúng Tôi</div>
+                <h2>Công Ty Thang Máy Nguyễn Gia</h2>
+                <p>Công ty Thang Máy Nguyễn Gia có sứ mệnh mang đến những giải pháp tối ưu về dịch vụ thang máy. Chúng tôi không chỉ cung cấp những chiếc thang máy tiện nghi, sang trọng mà hơn hết đó là sự thấu hiểu, cùng bạn lưu giữ và kiến tạo một kiệt tác Văn hoá - Kiến trúc cho tương lai.</p>
+                <div class="about-counters">
+                    <div class="counter-box">
+                        <div class="c-num">15</div>
+                        <div class="c-label">Năm kinh nghiệm</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="c-num">63</div>
+                        <div class="c-label">Tỉnh thành</div>
+                    </div>
+                    <div class="counter-box">
+                        <div class="c-num">1.000+</div>
+                        <div class="c-label">Dự án</div>
+                    </div>
+                </div>
+                <div class="about-features">
+                    <div class="about-feat"><div class="check">&#10003;</div> Nhập khẩu nguyên chiếc 100%</div>
+                    <div class="about-feat"><div class="check">&#10003;</div> Cá nhân hoá từng công trình</div>
+                    <div class="about-feat"><div class="check">&#10003;</div> Đội ngũ kỹ sư chuyên nghiệp</div>
+                    <div class="about-feat"><div class="check">&#10003;</div> Bảo hành & bảo trì toàn diện</div>
+                    <div class="about-feat"><div class="check">&#10003;</div> Phủ sóng 63 tỉnh thành</div>
+                    <div class="about-feat"><div class="check">&#10003;</div> Tư vấn phong thuỷ miễn phí</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-tag">Sản Phẩm</div>
+            <h2>Thang Máy Tải Khách Cao Cấp</h2>
+            <p>Nhập khẩu nguyên chiếc, đa dạng thiết kế sang trọng, phù hợp mọi phong cách kiến trúc</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card fade-up">
+                <div class="product-img">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/07/thang-may-tai-khach-05-1.jpeg" alt="Thang máy tải khách NG-C05">
+                    <div class="product-badge">Hot</div>
+                </div>
+                <div class="product-info">
+                    <h3>Thang Máy Tải Khách NG-C05</h3>
+                    <p>Thiết kế hiện đại, sang trọng. Phù hợp nhà ở, biệt thự cao cấp.</p>
+                </div>
+                <div class="product-footer">
+                    <a href="#contact" class="product-link">Nhận Báo Giá &#8594;</a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-img">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/07/thang-may-tai-khach-03.jpeg" alt="Thang máy tải khách NG-C03">
+                    <div class="product-badge">Cao Cấp</div>
+                </div>
+                <div class="product-info">
+                    <h3>Thang Máy Tải Khách NG-C03</h3>
+                    <p>Cabin inox gương, hệ thống đèn LED chiếu sáng đẳng cấp.</p>
+                </div>
+                <div class="product-footer">
+                    <a href="#contact" class="product-link">Nhận Báo Giá &#8594;</a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-img">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/07/thang-may-tai-khach-01.jpeg" alt="Thang máy tải khách NG-C01">
+                    <div class="product-badge">Bán Chạy</div>
+                </div>
+                <div class="product-info">
+                    <h3>Thang Máy Tải Khách NG-C01</h3>
+                    <p>Thiết kế cổ điển, nội thất cabin sang trọng, vận hành êm ái.</p>
+                </div>
+                <div class="product-footer">
+                    <a href="#contact" class="product-link">Nhận Báo Giá &#8594;</a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-img">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/07/thang-may-tai-khach-02.jpeg" alt="Thang máy tải khách NG-C02">
+                    <div class="product-badge">Mới</div>
+                </div>
+                <div class="product-info">
+                    <h3>Thang Máy Tải Khách NG-C02</h3>
+                    <p>Trần hoa văn tinh xảo, phong cách Châu Âu đương đại.</p>
+                </div>
+                <div class="product-footer">
+                    <a href="#contact" class="product-link">Nhận Báo Giá &#8594;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-tag">Dịch Vụ</div>
+            <h2>Dịch Vụ Toàn Diện</h2>
+            <p>Từ tư vấn, thiết kế đến lắp đặt và bảo trì - chúng tôi đồng hành cùng bạn</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card fade-up">
+                <div class="service-icon">&#128172;</div>
+                <h3>Tư Vấn Lắp Đặt</h3>
+                <p>Tư vấn chi phí lắp đặt tốt nhất thị trường. Thiết kế phương án thi công phù hợp từng khách hàng.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">&#128295;</div>
+                <h3>Lắp Đặt Thang Máy</h3>
+                <p>Thi công chuyên nghiệp, đúng tiến độ, đạt chuẩn an toàn kỹ thuật quốc tế. Nghiệm thu kỹ lưỡng.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">&#128736;</div>
+                <h3>Nâng Cấp Thang Máy</h3>
+                <p>Nâng cấp hệ thống thang máy cũ lên công nghệ mới, cải thiện hiệu suất và tiết kiệm điện năng.</p>
+            </div>
+            <div class="service-card fade-up">
+                <div class="service-icon">&#128260;</div>
+                <h3>Bảo Trì Thang Máy</h3>
+                <p>Dịch vụ bảo trì định kỳ, sửa chữa kịp thời 24/7, đảm bảo thang máy luôn vận hành ổn định.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="why-us">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-tag">Cam Kết</div>
+            <h2>Tại Sao Chọn Nguyễn Gia?</h2>
+            <p>Chúng tôi cam kết mang đến giá trị vượt trội cho mỗi khách hàng</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-up">
+                <div class="why-num">01</div>
+                <div class="why-icon">&#127942;</div>
+                <h3>Nhập Khẩu Nguyên Chiếc</h3>
+                <p>100% thang máy nhập khẩu nguyên chiếc từ các thương hiệu uy tín: Mitsubishi, Fuji, Hyundai, Mitsu.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-num">02</div>
+                <div class="why-icon">&#128200;</div>
+                <h3>15 Năm Kinh Nghiệm</h3>
+                <p>Hơn 15 năm kinh nghiệm, phủ sóng 63 tỉnh thành với hơn 1.000 dự án hoàn thành xuất sắc.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-num">03</div>
+                <div class="why-icon">&#127912;</div>
+                <h3>Cá Nhân Hoá Thiết Kế</h3>
+                <p>Thiết kế riêng cho từng công trình, tư vấn chọn hướng phong thuỷ tài lộc, view đẹp theo thực địa.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-num">04</div>
+                <div class="why-icon">&#128737;</div>
+                <h3>Bảo Hành Toàn Diện</h3>
+                <p>Chế độ bảo hành chính hãng, bảo trì định kỳ. Đội ngũ kỹ thuật hỗ trợ 24/7 trên toàn quốc.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-num">05</div>
+                <div class="why-icon">&#128176;</div>
+                <h3>Giá Cả Cạnh Tranh</h3>
+                <p>Tư vấn phương án tài chính có lợi nhất cho khách hàng. Tiết kiệm hàng TRỰC TRIỆU đồng.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-num">06</div>
+                <div class="why-icon">&#129309;</div>
+                <h3>Đối Tác Uy Tín</h3>
+                <p>Đại lý chính thức của Mitsubishi, Fuji Japan Elevators, Hyundai Elevator, Mitsu Elevators.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-tag">Dự Án</div>
+            <h2>Dự Án Tiêu Biểu</h2>
+            <p>Một số công trình tiêu biểu đã được Nguyễn Gia triển khai thành công</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card fade-up">
+                <div class="project-img">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/Du-an-nha-bac-luu-ba-hai-1.jpg" alt="Lắp đặt thang máy công trình Nhà Bác Lưu Bá Hải">
+                </div>
+                <div class="project-info">
+                    <h3>Nhà Bác Lưu Bá Hải</h3>
+                    <p>Lắp đặt thang máy tải khách cho nhà ở tại Thị trấn Phủ Lý</p>
+                </div>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-img">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/Du-an-nha-hang-den-long-1.jpg" alt="Lắp đặt thang máy công trình Nhà Hàng Đèn Lồng">
+                </div>
+                <div class="project-info">
+                    <h3>Nhà Hàng Đèn Lồng</h3>
+                    <p>Lắp đặt thang máy tải khách cho nhà hàng tại Hà Nam</p>
+                </div>
+            </div>
+            <div class="project-card fade-up">
+                <div class="project-img">
+                    <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/du-an-Biet-thu-Trong-Hong.jpg" alt="Lắp đặt thang máy công trình Biệt Thự Trọng Hồng">
+                </div>
+                <div class="project-info">
+                    <h3>Biệt Thự Trọng Hồng</h3>
+                    <p>Lắp đặt thang máy tải khách cho biệt thự tại Duy Tiên, Hà Nam</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-tag">Đối Tác</div>
+            <h2>Đối Tác Chiến Lược</h2>
+        </div>
+        <div class="partners-grid fade-up">
+            <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/mitsubishi-1.png" alt="Mitsubishi Elevators" class="partner-logo">
+            <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/fuji-1.png" alt="Fuji Japan Elevators" class="partner-logo">
+            <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/hyundai-1.png" alt="Hyundai Elevator" class="partner-logo">
+            <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/10/mitsu-1.png" alt="Mitsu Elevators" class="partner-logo">
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-tag">Quy Trình</div>
+            <h2>Quy Trình Làm Việc</h2>
+            <p>4 bước đơn giản để sở hữu thang máy trong mơ</p>
+        </div>
+        <div class="process-steps">
+            <div class="step fade-up">
+                <div class="step-circle">1</div>
+                <h3>Tư Vấn & Khảo Sát</h3>
+                <p>Tiếp nhận yêu cầu, tư vấn giải pháp phù hợp và khảo sát hiện trạng công trình.</p>
+            </div>
+            <div class="step fade-up">
+                <div class="step-circle">2</div>
+                <h3>Báo Giá & Hợp Đồng</h3>
+                <p>Lập báo giá chi tiết, minh bạch. Ký kết hợp đồng với các điều khoản rõ ràng.</p>
+            </div>
+            <div class="step fade-up">
+                <div class="step-circle">3</div>
+                <h3>Lắp Đặt & Nghiệm Thu</h3>
+                <p>Thi công chuyên nghiệp, đúng tiến độ. Nghiệm thu kỹ lưỡng trước bàn giao.</p>
+            </div>
+            <div class="step fade-up">
+                <div class="step-circle">4</div>
+                <h3>Bảo Hành & Bảo Trì</h3>
+                <p>Chế độ bảo hành dài hạn, bảo trì định kỳ đảm bảo vận hành ổn định.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="cta-content">
+        <h2>Sẵn Sàng Nâng Tầm Ngôi Nhà Của Bạn?</h2>
+        <p>Liên hệ ngay hôm nay để nhận tư vấn miễn phí và báo giá tốt nhất cho dự án thang máy của bạn.</p>
+        <div class="cta-buttons">
+            <a href="tel:0833633388" class="btn btn-accent">&#9742; Gọi Ngay: 083 363 3388</a>
+            <a href="#contact" class="btn btn-white">&#9993; Gửi Yêu Cầu Tư Vấn</a>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="section-header fade-up">
+            <div class="section-tag">Liên Hệ</div>
+            <h2>Liên Hệ Với Chúng Tôi</h2>
+            <p>Đội ngũ tư vấn sẵn sàng hỗ trợ bạn 24/7</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info fade-up">
+                <h3>Thang Máy Nguyễn Gia</h3>
+                <p>Chuyên cung cấp thiết bị, dịch vụ lắp đặt thang máy chuyên nghiệp. Tận tâm đi viễn xa!</p>
+                <div class="contact-item">
+                    <div class="ci-icon">&#128205;</div>
+                    <div>
+                        <div class="ci-label">Địa Chỉ</div>
+                        <div class="ci-value">266 Đường Lê Duẩn, TP. Phủ Lý, Tỉnh Hà Nam</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="ci-icon">&#128222;</div>
+                    <div>
+                        <div class="ci-label">Hotline</div>
+                        <div class="ci-value"><a href="tel:0833633388">083 363 3388</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="ci-icon">&#128172;</div>
+                    <div>
+                        <div class="ci-label">Zalo / Viber</div>
+                        <div class="ci-value"><a href="tel:0398678188">0398.678.188</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="ci-icon">&#9993;</div>
+                    <div>
+                        <div class="ci-label">Email</div>
+                        <div class="ci-value"><a href="mailto:nguyengiaele.company@gmail.com">nguyengiaele.company@gmail.com</a></div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="ci-icon">&#128337;</div>
+                    <div>
+                        <div class="ci-label">Giờ Làm Việc</div>
+                        <div class="ci-value">Thứ 2 - Thứ 7: 8:00 - 17:30</div>
+                    </div>
+                </div>
+            </div>
+            <form class="contact-form fade-up" onsubmit="event.preventDefault(); alert('Cảm ơn bạn! Chúng tôi sẽ liên hệ lại sớm nhất.');">
+                <h3>Đăng Ký Tư Vấn</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Họ và tên *</label>
+                        <input type="text" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại *</label>
+                        <input type="tel" placeholder="090 xxx xxxx" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Loại thang máy quan tâm</label>
+                    <select>
+                        <option>-- Chọn loại thang máy --</option>
+                        <option>Thang máy gia đình</option>
+                        <option>Thang máy tải khách</option>
+                        <option>Thang máy quan sát</option>
+                        <option>Thang máy tải hàng</option>
+                        <option>Khác</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nội dung yêu cầu</label>
+                    <textarea placeholder="Mô tả nhu cầu của bạn..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Gửi Yêu Cầu Tư Vấn &#8594;</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <img src="https://thangmaynguyengia.com/wp-content/uploads/2023/07/logothangmaynguyengia-1024x280.png" alt="Thang Máy Nguyễn Gia" class="footer-logo" style="filter:brightness(10);">
+            <p>Thang Máy Nguyễn Gia cung cấp thiết bị, dịch vụ lắp đặt thang máy chuyên nghiệp. Địa chỉ: 266 Đường Lê Duẩn, TP. Phủ Lý, Tỉnh Hà Nam.</p>
+            <div class="social-links">
+                <a href="#" title="Facebook">f</a>
+                <a href="#" title="Instagram">&#9675;</a>
+                <a href="#" title="Twitter">t</a>
+                <a href="#" title="Pinterest">p</a>
+            </div>
+        </div>
+        <div>
+            <h4>Sản Phẩm</h4>
+            <ul class="footer-links">
+                <li><a href="#">Thang máy gia đình</a></li>
+                <li><a href="#">Thang máy tải khách</a></li>
+                <li><a href="#">Thang máy quan sát</a></li>
+                <li><a href="#">Thang máy tải hàng</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Dịch Vụ</h4>
+            <ul class="footer-links">
+                <li><a href="#">Tư vấn lắp đặt</a></li>
+                <li><a href="#">Lắp đặt thang máy</a></li>
+                <li><a href="#">Nâng cấp thang máy</a></li>
+                <li><a href="#">Bảo trì & sửa chữa</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Liên Hệ</h4>
+            <ul class="footer-links">
+                <li><a href="tel:0833633388">&#128222; 083 363 3388</a></li>
+                <li><a href="tel:0398678188">Zalo: 0398.678.188</a></li>
+                <li><a href="mailto:nguyengiaele.company@gmail.com">&#9993; Email</a></li>
+                <li><a href="#">&#128205; 266 Lê Duẩn, Phủ Lý, Hà Nam</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Thang Máy Nguyễn Gia. All rights reserved.</span>
+        <span>Tận Tâm Đi Viễn Xa!</span>
+    </div>
+</footer>
+
+<!-- FLOATING ELEMENTS -->
+<a href="tel:0833633388" class="phone-float">&#128222; 083 363 3388</a>
+<a href="https://zalo.me/0398678188" class="zalo-float" target="_blank">Zalo</a>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        const scrollTop = document.getElementById('scrollTop');
+        if (window.scrollY > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        if (window.scrollY > 400) scrollTop.classList.add('visible');
+        else scrollTop.classList.remove('visible');
+    });
+
+    // Mobile menu toggle
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('active');
+        });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Counter animation
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.c-num, .stat-num');
+                counters.forEach(counter => {
+                    const text = counter.textContent;
+                    const num = parseInt(text.replace(/[^0-9]/g, ''));
+                    const suffix = text.replace(/[0-9]/g, '');
+                    let current = 0;
+                    const increment = Math.ceil(num / 40);
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= num) {
+                            current = num;
+                            clearInterval(timer);
+                        }
+                        counter.textContent = current.toLocaleString('vi-VN') + suffix;
+                    }, 30);
+                });
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.about-counters, .hero-stats').forEach(el => counterObserver.observe(el));
+</script>
+
+</body>
+</html>
